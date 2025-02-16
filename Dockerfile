@@ -1,5 +1,16 @@
-RUN R -e "devtools::install_local(build=FALSE, dependencies = TRUE, repos='https://mirror.csclub.uwaterloo.ca/CRAN/')"
 
+# Base image https://hub.docker.com/r/rocker/rstudio
+FROM rocker/rstudio:4.4
+
+## Create directories
+RUN mkdir -p /rstudio
+RUN mkdir -p /rscripts
+
+## Install R packages
+RUN R -e "devtools::install_local(build=FALSE, dependencies=TRUE, repos='https://mirror.csclub.uwaterloo.ca/CRAN/')"
+
+
+## Install plumber and run api
 FROM trestletech/plumber
 LABEL maintainer="mark"
 

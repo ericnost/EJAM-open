@@ -1,14 +1,14 @@
 
 # Base image https://hub.docker.com/r/rocker/rstudio
-FROM rocker/rstudio:4.0.5
+FROM rocker/rstudio:4.4
 
 ## Create directories
 RUN mkdir -p /rstudio
 RUN mkdir -p /rscripts
 
 ## Install R packages
-RUN R -e "install.packages(c('remotes', 'geojson_sf'), repos='https://mirror.csclub.uwaterloo.ca/CRAN/')"
-RUN R -e "remotes::install_github('ericnost/EJAM-open', dependencies = TRUE)" 
+RUN R -e "install.packages(c('remotes', 'geojsonsf'), repos='https://mirror.csclub.uwaterloo.ca/CRAN/')"
+RUN R -e "remotes::install_github('USEPA/EJAM-open', dependencies = TRUE)" 
 ##"remotes::install_local('.', build=FALSE, dependencies=TRUE, repos='https://mirror.csclub.uwaterloo.ca/CRAN/')"
 
 
